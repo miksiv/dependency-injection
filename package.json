@@ -1,0 +1,17 @@
+{
+  "name": "dependency-injection",
+  "version": "1.0.0",
+  "description": "DI demo",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "mikhail.sivinskikh@bwt.ee",
+  "license": "ISC",
+  "devDependencies": {
+    "typescript": "^5.6.3"
+  },
+  "dependencies": {
+    "ts-node": "^10.9.2"
+  }
+}
