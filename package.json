@@ -4,7 +4,11 @@
   "description": "DI demo",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "di:container": "npx ts-node src/dependency-injection-implementations/1-di-container.ts",
+    "di:token": "npx ts-node src/dependency-injection-implementations/2-di-token.ts",
+    "di:hierarchy": "npx ts-node src/dependency-injection-implementations/3-di-hierarchy.ts",
+    "di:registration-options": "npx ts-node src/dependency-injection-implementations/4-di-registration-options.ts",
+    "di:injectable-decorator": "npx ts-node src/dependency-injection-implementations/5-di-injectable-decorator.ts"
   },
   "author": "mikhail.sivinskikh@bwt.ee",
   "license": "ISC",

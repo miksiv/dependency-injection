@@ -1,28 +1,14 @@
 import {Logger} from "../dependencies/Logger";
 import {Greeter} from "../Greeter";
-
-class Token<T> {
-    constructor(
-        public readonly name: string,
-        public readonly factory?: () => T // Optional factory function
-    ) {
-    }
-}
-
-type Factory<T> = () => T;
-
-
-interface RegisterOptions<T> {
-    useClass?: new (...args: any[]) => T; // Class to instantiate
-    useFactory?: Factory<T>; // Custom factory function
-    useValue?: T; // Predefined instance
-}
+import {RegisterOptions} from "../models/RegisterOptions";
+import {Class} from "../models/UtilityTypes";
+import {Token} from "./Token";
 
 class DependencyContainer {
     private readonly dependencies = new Map<Token<any>, any>();
     private readonly classNames = new Map<string, Token<any>>();
 
-    // Register dependencies with flexible options
+
     register<T>(token: Token<T>, options?: RegisterOptions<T>): void {
         if (options?.useValue) {
             this.dependencies.set(token, options.useValue);
@@ -63,9 +49,7 @@ class DependencyContainer {
 //New DI container is created on a bootstrap
 const container = new DependencyContainer();
 
-// A simple type to reflect a class
-type Class = { new(...args: any[]): any; };
-
+// A TS decorator function to automatically inject a provider
 function Injectable(): ClassDecorator {
     return function (target: Function) {
         // Register the class with the provided token in the DependencyContainer
@@ -84,6 +68,6 @@ class ConsoleWarn implements Logger {
     }
 }
 
-//Dependency is served by a DI container without a manual registration of a provider in DI container
+//Dependency is served by a DI system without a manual registration of a provider in DI container
 const greeter = new Greeter(container.getByClass(ConsoleWarn));
 greeter.greet('John Doe');

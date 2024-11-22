@@ -1,16 +1,10 @@
 import {ConsoleLogger} from "../dependencies/Logger";
 import {Greeter} from "../Greeter";
-
-class Token<T> {
-    constructor(
-        public readonly name: string,
-        public readonly factory?: () => T // Optional factory function
-    ) {
-    }
-}
+import {Token} from "./Token";
 
 class DependencyContainer {
     private readonly dependencies = new Map<Token<any>, any>();
+    // A reference to a parent DI container
     private readonly parentContainer?: DependencyContainer;
 
     constructor(parentContainer?: DependencyContainer) {

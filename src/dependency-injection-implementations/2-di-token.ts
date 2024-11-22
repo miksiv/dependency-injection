@@ -1,15 +1,7 @@
 import {ConsoleLogger} from "../dependencies/Logger";
 import {Greeter} from "../Greeter";
+import {Token} from "./Token";
 
-class Token<T> {
-    constructor(
-        public readonly name: string,
-        public readonly factory?: () => T // Optional factory function
-    ) {
-    }
-}
-
-// Create a dependency container
 class DependencyContainer {
     private readonly dependencies = new Map<Token<any>, any>();
 
@@ -34,7 +26,6 @@ class DependencyContainer {
     }
 }
 
-// Create an instance of the dependency container
 const container = new DependencyContainer();
 
 //Register the new Token
